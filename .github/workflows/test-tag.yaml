@@ -20,12 +20,12 @@ jobs:
         id: parse-tag
         shell: bash
         run: |
-          echo 'base_ref ${{ github.base_ref }}'
-          if [ '${{ github.base_ref }}' == '' ]; then
+          echo 'base_ref ${{ github.ref_name }}'
+          if [ '${{ github.ref_name }}' == '' ]; then
             echo 'Warning, input image tag empty! Falling back to short commit SHA.'
             IMAGE_TAG=$(git rev-parse --short HEAD)
           else
-            IMAGE_TAG=${{ github.base_ref }}
+            IMAGE_TAG=${{ github.ref_name }}
           fi
 
           echo IMAGE_TAG = $IMAGE_TAG
